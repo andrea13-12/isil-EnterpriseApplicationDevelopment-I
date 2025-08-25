@@ -65,6 +65,3 @@ By the end of the course, students will be able to:
 - [La Web del Programador](http://www.lawebdelprogramador.com)  
 - [Programacion.com – Java](http://www.programacion.com/java)  
 
----
-
-✨ *This README is tailored for course repositories and project tracking. It structures the syllabus into a developer-friendly format.*  
