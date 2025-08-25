@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<h1>Agregar Detalle de Orden de Compra</h1><br>
+		
+		<h2>Datos de la Orden de Compra</h2>
+		
+			Fecha Orden Compra: <input type="date" name="fecha" value="${ordenCompra.fecha }"  readonly> <br><br>
+			Proveedor: <input type="text" name="razonSocial" value="${ordenCompra.proveedor.razonSocial}" readonly><br> <br>
+			Monto Sin IGV: <input type="text" name="montoSinIGV" value="${ordenCompra.montoSinIGV}" readonly><br> <br>
+			Monto IGV: <input type="text" name="montoIGV" value="${ordenCompra.montoIGV}" readonly><br> <br>
+			Monto Total: <input type="text" name="montoTotal" value="${ordenCompra.montoTotal}" readonly><br> <br>
+			Estado: <input type="text" name="estado" value="${ordenCompra.estado}" readonly><br><br>
+		
+		<h2>Agregar Insumo</h2><br>
+		<form action="ordenCompra" method="GET">
+		<input type="hidden" name="opcionGet" value="registrarDetalle">
+		<input type="hidden" name="idOrdenCompra" value="${ordencompra.id}"> 
+			Insumo: <select name= "idInsumo">
+					<option th:each="ordenCompra : ${listaOrdenCompra}" value="${insumo.id}">${insumo.nombre}</option>
+				</c:forEach>
+			</select><br><br>
+			Cantidad: <input type="text" name="cantidad"><br><br>
+			Precio Unitario: <input type="text" name="precioUnitario"><br><br>
+			Precio Total: <input type="text" name="precioTotal"><br><br>
+			
+			<button>Agregar</button>
+		</form>
+		<h2>Detalle de Compra </h2><br><br>
+		<table>
+			<tr th:each="detalleOrdenCompra : ${listaOrdenCompra}">
+				<td>Id</td>
+				<td> Insumo</td>
+				<td>Cantidad</td>
+				<td>Precio Unitario</td>
+				<td> Precio Total</td>
+				<td> Acciones</td>
+			</tr>
+					
+		</table>
+		
+</body>
+</html>

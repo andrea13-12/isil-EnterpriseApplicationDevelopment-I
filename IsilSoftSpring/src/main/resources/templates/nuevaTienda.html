@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Nueva Tienda</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body class="bg-light">
+		<div class="container mt-5">
+			<h1 class="mb-4 text-center text-primary">Registrar Nueva Tienda</h1>
+				
+				<div th:if="${mensaje!=null}" class="alert alert-info text-center" th:text="${mensaje}"></div>
+		
+			<form th:action="@{/tienda/registrar}" method="POST" th:object="${tienda}" class="card shadow p-4">
+				<div class="mb-3">
+					<label class="form-label">Dirección:</label>
+					<input  class="form-control" type="text" th:field="*{direccion}" placeholder="Ingrese dirección">
+				</div>
+				
+				<div class="mb-3">
+						<label class="form-label">Distrito:</label>
+			  			<input type="text" class="form-control" th:field="*{distrito}" placeholder="Ingrese distrito">
+			  	</div>
+			  	
+			  	<div class="mb-3">
+						<label class="form-label">Aforo:</label>
+						<input type="text" class="form-control" th:field="*{aforo}" placeholder="Ingrese aforo">
+				</div>
+				
+				<div class="mb-3">
+						<label class="form-label">Jefe de Tienda:</label>
+						<select class="form-select" th:field="*{colaborador.id}">
+								<option 
+									th:each="colaborador: ${listaColaborador}" 
+									th:text="${colaborador.nombres + ' ' + colaborador.apePaterno + ' ' + colaborador.apeMaterno}"
+									th:value="${colaborador.id}">
+								</option>
+							</select>
+				</div>
+							
+				<div class="text-center">
+						<button type="submit" class="btn btn-primary px-5">Grabar</button>
+				</div>
+			</form>
+		</div>
+		
+	</body>
+</html>

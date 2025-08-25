@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Editar Proveedor</h1>
+	<br>
+<!-- th:fild es para dar el nombre y  -->
+	<form th:action="@{/proveedor/actualizar}" method="POST" th:object="${proveedor}">
+		<input type="hidden" th:field="${id}">
+		Ruc: <input type="text" th:field="*{ruc}"><br><br>
+		Razon Social <input type="text" th:field="*{razonSocial}"><br><br>
+		Direccion: <input type="text" th:field="*{direccion}"><br><br>
+		Estado : <select th:field= "*{estado}">
+		<!-- Para entrelazar colocamos el * y este representa al proveedor -->
+					<option th:value="Activo"> Activo </option>
+					<option th:value="Inactivo"> Inactivo </option>
+				</select><br><br>
+		<button>Grabar</button>
+	</form>
+</body>
+</html>

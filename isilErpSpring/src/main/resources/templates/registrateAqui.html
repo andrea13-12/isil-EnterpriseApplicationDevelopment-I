@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registrate</title>
+</head>
+<body>
+	<h1>Registrate Aqui :)</h1>
+	<br> <br>
+	
+	<!-- Si la variable mensaje es dif a null aparece el msnj -->
+	<div th:if="${mensaje != null}" th:text="${mensaje}"></div>
+	
+	<form th:action="@{/usuario/insertar}" method="POST">
+		Correo : <input type="input" name="correo"> <br><br>
+		Contraseña : <input type="password" name="password"> <br><br>
+		<button>Registrar</button>
+	</form>
+</body>
+</html>

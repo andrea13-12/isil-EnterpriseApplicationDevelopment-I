@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- se llama al controlador "usuario" y luego creamos el metodo ValidarUsuario -->
+		<form th:action="@{/usuario/validarUsuario}" method="POST">
+			<h1>Isil Erp Spring</h1> <br> <br>
+			
+			Correo : <input type="text" name="correo"><br><br>
+			
+			Contraseña : <input type="password" name="password"><br><br> 
+			
+			<button>Ingresar</button>
+			
+			<br>
+			<a th:href="@{/usuario/registrar}">Registrate aqui</a>
+		</form>
+	</body>
+</html>

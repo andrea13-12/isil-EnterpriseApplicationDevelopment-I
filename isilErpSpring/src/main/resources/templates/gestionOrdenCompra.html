@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Gestion Insumos</title>
+	</head>
+	<body>
+		<h1>Bienvenido al gestor de Orden de Compra</h1>
+		<br> <br>
+		<h2>Criterios de Busqueda </h2> <br><br>
+		<form th:action="@{/ordenCompra/buscar}" method="GET">
+			Fecha inicio : <input type="date" name="fechaInicio">
+			Fecha fin : <input type="date" name="fechaFin">
+			<button>Buscar</button>
+		</form>
+		
+		<br><br><br>
+		<h2>Resultados de la Busqueda</h2>
+		<table>
+			<tr>
+				<td>Codigo</td>
+				<td>Fecha</td>
+				<td>Proveedor</td>
+				<td>Estado</td>
+				<td>Acciones</td>
+			</tr>
+			
+			<tr th:each="ordenCompra : ${listaOrdenCompra}">
+				<td th:text="${ordenCompra.id}"></td>
+				<td th:text="${ordenCompra.fecha}"></td>
+				<td th:text="${ordenCompra.proveedor.razonSocial}"></td>
+				<td th:text="${ordenCompra.estado}"></td>
+				<td>
+					<a th:href="@{/ordenCompra/editar/{id}(id=${ordenCompra.id})}">Editar</a>
+					<a th:href="@{/ordenCompra/eliminar/{id}(id=${ordenCompra.id})}">Eliminar</a>
+					<a th:href="@{/ordenCompra/agregarDetalle/{id}(id=${ordenCompra.id})}">Agregar Detalle</a>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<form th:action="@{/ordenCompra/nuevo}" method="POST">
+			<button>Nuevo</button>
+		</form>
+		
+	</body>
+</html>

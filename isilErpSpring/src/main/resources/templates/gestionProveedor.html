@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Gestion Proveedores</title>
+	</head>
+	<body>
+		<h1>Bienvenido al gestor de Proveedores</h1>
+		<br> <br>
+		<h2>Criterios de Busqueda </h2> <br><br>
+		<form th:action="@{/proveedor/buscar}" method="GET">
+			Razon Social : <input type="text" name="razonSocial">
+			<button>Buscar</button>
+		</form>
+		
+		<br><br><br>
+		<h2>Resultados de la Busqueda</h2>
+		<table>
+			<tr>
+				<td>Codigo</td>
+				<td>Ruc</td>
+				<td>Razon Social</td>
+				<td>Estado</td>
+				<td>Acciones</td>
+			</tr>
+			<!-- llamamos a la taba y La lista que creamos que va a recorrer  -->
+			<!-- Por cada elemento de esta lista de proveedores va a crear un tr -->
+			<tr th:each="proveedor: ${listaProveedores}">
+				<td th:text="${proveedor.id}"></td>
+				<td th:text="${proveedor.ruc}"></td>
+				<td th:text="${proveedor.razonSocial}"></td>
+				<td th:text="${proveedor.estado}"></td>
+				<td>
+					<a th:href="@{/proveedor/editar/{id}(id=${proveedor.id})}">Editar</a>
+					<a th:href="@{/proveedor/eliminar/{id}(id=${proveedor.id})}">Eliminar</a>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<form th:action="@{/proveedor/nuevo}" method="POST">
+			<button>Nuevo</button>
+		</form>
+		
+	</body>
+</html>

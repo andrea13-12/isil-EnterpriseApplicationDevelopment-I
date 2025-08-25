@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Gestion Insumos</title>
+	</head>
+	<body>
+		<h1>Bienvenido al gestor de Insumo</h1>
+		<br> <br>
+		<h2>Criterios de Busqueda </h2> <br><br>
+		<form th:action="@{/insumo/buscar}" method="GET">
+			Tipo : 	<select name="tipo">
+						<option th:each="tipoInsumo: ${listaTiposInsumos}" th:text="${tipoInsumo.nombre}" th:value="${tipoInsumo.id}"></option>
+					</select> 
+			<button>Buscar</button>
+		</form>
+		
+		<br><br><br>
+		<h2>Resultados de la Busqueda</h2>
+		<table>
+			<tr>
+				<td>Codigo</td>
+				<td>Nombre</td>
+				<td>Tipo</td>
+				<td>Stock</td>
+				<td>Acciones</td>
+			</tr>
+			<!-- llamamos a la taba y La lista que creamos que va a recorrer  -->
+			<!-- Por cada elemento de esta lista de proveedores va a crear un tr -->
+			<tr th:each="insumo : ${listaInsumos}">
+				<td th:text="${insumo.id}"></td>
+				<td th:text="${insumo.nombre}"></td>
+				<td th:text="${insumo.tipo.nombre}"></td>
+				<td th:text="${insumo.stock}"></td>
+				<td>
+					<a th:href="@{/insumo/editar/{id}(id=${insumo.id})}">Editar</a>
+					<a th:href="@{/insumo/eliminar/{id}(id=${insumo.id})}">Eliminar</a>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<form th:action="@{/insumo/nuevo}" method="POST">
+			<button>Nuevo</button>
+		</form>
+		
+	</body>
+</html>

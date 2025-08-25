@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Nuevo Proveedor</h1>
+	<br>
+	<div th:if="${mensaje!=null}" th:text="${mensaje}"></div>
+<!-- th:fild es para dar el nombre y  -->
+	<form th:action="@{/proveedor/registrar}" method="POST" th:object="${proveedor}">
+		Ruc: <input type="text" th:field="*{ruc}"><br><br>
+		Razon Social <input type="text" th:field="*{razonSocial}"><br><br>
+		Direccion: <input type="text" th:field="*{direccion}"><br><br>
+		<button>Grabar</button>
+	</form>
+</body>
+</html>

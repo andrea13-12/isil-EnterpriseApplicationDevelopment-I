@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Nuevo Insumo</h1>
+	<br>
+	<div th:if="${mensaje!=null}" th:text="${mensaje}"></div>
+<!-- th:fild es para dar el nombre y  -->
+	<form th:action="@{/insumo/registrar}" method="POST" th:object="${insumo}">
+		Nombre: <input type="text" th:field="*{nombre}"><br><br>
+		
+		<!-- Colocamos id porq es lo que necesitamos para poder mostrar lo que queremos -->
+		Tipo : 	<select th:field="*{tipo.id}">
+					<option th:each="tipoInsumo: ${listaTiposInsumos}" th:text="${tipoInsumo.nombre}" th:value="${tipoInsumo.id}"></option>
+				</select><br><br>
+				
+		Stock : <input type="text" th:field="*{stock}"><br><br>
+		Stock Minimo: <input type="text" th:field="*{stockMinimo}"><br><br>
+		
+		Proveedor : <select th:field="*{proveedor.id}">
+						<option th:each="proveedor: ${listaProveedores}" th:text="${proveedor.razonSocial}" th:value="${proveedor.id}"></option>
+					</select><br><br>
+				
+		Estado: <select th:field="*{estado}">
+					<option th:value="Activo" th:text="Activo"></option>
+					<option th:value="Inactivo" th:text="Inactivo"></option>
+				</select><br><br>
+		
+		<button>Grabar</button>
+	</form>
+</body>
+</html>
